@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Multi-Machine Config
+Vagrant.configure("2") do |config|
+     config.vm.define "vmA" do |vmA|
+	vmA.vm.box = "bento/ubuntu-20.04"
+	vmA.vm.network "public_network", ip: "192.168.85.1"
+	vmA.vm.network "private_network", ip: "192.168.100.10", name: "VirtualBox Host-Only Ethernet Adapter #3"
+	vmA.vm.hostname = "vmA"
+	vmA.vm.provider :virtualbox do |v|
+	v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	v.customize ["modifyvm", :id, "--memory", 4096]
+	v.customize ["modifyvm", :id, "--name", "vmA"]
+	end
+     end
+
+     config.vm.define "vmB" do |vmB|
+	vmB.vm.box = "bento/ubuntu-20.04"
+	vmB.vm.network "private_network", ip: "192.168.101.1"
+	vmB.vm.network "private_network", ip: "192.168.100.20", name: "VirtualBox Host-Only Ethernet Adapter #4"
+	vmB.vm.hostname = "vmB"
+	vmB.vm.provider :virtualbox do |v|
+	v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	v.customize ["modifyvm", :id, "--memory", 4096]
+	v.customize ["modifyvm", :id, "--name", "vmB"]
+	end
+     end
+
+     config.vm.define "vmC" do |vmC|
+	vmC.vm.box = "bento/ubuntu-20.04"
+	vmC.vm.network "public_network", ip: "192.168.102.1"
+	vmC.vm.network "private_network", ip: "192.168.100.30", name: "VirtualBox Host-Only Ethernet Adapter #5"
+	vmC.vm.hostname = "vmC"
+	vmC.vm.provider :virtualbox do |v|
+	v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	v.customize ["modifyvm", :id, "--memory", 4096]
+	v.customize ["modifyvm", :id, "--name", "vmC"]
+	end
+     end
+end

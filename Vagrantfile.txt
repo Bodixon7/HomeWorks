@@ -1,3 +1,4 @@
+# Stas Stepaniuk was here
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 

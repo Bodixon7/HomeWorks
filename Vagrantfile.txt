@@ -1,4 +1,5 @@
 # Stas Stepaniuk was here
+# Stas Stepaniuk was here #2
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
